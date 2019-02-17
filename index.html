@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Contador de Letras</title>
+    <link rel="shortcut icon" href="twenty-five.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <style>
+
+        .center {
+            margin: 0 auto;
+        }
+    
+    </style>
+  </head>
+  <body>
+    <section class="hero has-background-light">
+        <div class="hero-body">
+            <div class="container has-text-centered">
+                <h1 class="title">
+                    Contador de Letras
+                </h1>
+                <p class="subtitle">
+                    >>>>>>>>>>>>><<<<<<<<<<<<<
+                </p>
+            </div>
+        </div>
+    </section>
+    <section class="section" style="padding-bottom: 0;">
+        <div class="container">
+            <div class="columns">
+                <div class="column is-three-quarters">
+                    <div class="control is-large">
+                        <textarea class="textarea" id="texto" name="texto" placeholder="Insira seu texto aqui" rows="10" style="resize: none;"></textarea>
+                    </div>
+                </div>
+                <div class="column">
+                    <table class="table is-fullwidth">
+                        <thead>
+                            <tr>
+                                <th class="has-text-centered" colspan="2">Total</th>
+                            </tr>
+                            <tr>
+                                <th>Caracteres</th>
+                                <th>Letras</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="total-caracteres">0</td>
+                                <td id="total-letras">0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="section" style="padding-top: 1.6vh; padding-left: 1vw;">
+        <div class="container">
+            <table class="table center is-fullwidth is-narrow" id="letras">
+                <thead>
+                    <tr>
+                        <th class="has-text-centered" colspan="2">Letras</th>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <th class="has-text-centered">-</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="has-text-centered" title="Quantidade">N°</th>
+                        <td class="has-text-centered">-</td>
+                    </tr>
+                    <tr>
+                        <th class="has-text-centered" title="Frequência">%</th>
+                        <td class="has-text-centered">-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+    <footer class="footer has-background-grey-lighter" style="padding: 10px 0 10px 6vw;">
+        <div class="content">
+            <p>
+                Title icon made by <a href="https://www.flaticon.com/authors/roundicons" title="Roundicons">Roundicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a>
+            </p>
+        </div>
+    </footer>
+    <script src="js/app/helpers/maybe.js"></script>
+    <script src="js/app/models/Contador.js"></script>
+    <script src="js/app/models/Character.js"></script>
+    <script src="js/app/models/Letters.js"></script>
+    <script src="js/app/services/ProxyFactory.js"></script>
+    <script src="js/app/helpers/Bind.js"></script>
+    <script src="js/app/pollyfill/ObjectKeys.js"></script>
+    <script src="js/app/views/View.js"></script>
+    <script src="js/app/views/CharacterView.js"></script>
+    <script src="js/app/views/LettersView.js"></script>
+    <script src="js/app/controllers/ContadorController.js"></script>
+    <script src="js/app/helpers/utils.js"></script>
+    <script>
+        let contadorController = new ContadorController();
+
+        const countText = partialize(debounceTime, 1000)(contadorController.contabilizaTexto.bind(contadorController));
+
+        document.querySelector("#texto").oninput = () => {
+            loading(true);
+            countText();
+        };
+
+        function loading(add) {
+            let text = document.querySelector("#texto").parentElement;
+
+            if(!text.classList.contains("is-loading") && add)
+                text.classList.add("is-loading");
+            else if(text.classList.contains("is-loading") && !add)
+                text.classList.remove("is-loading");
+        }
+    </script>
+  </body>
+</html>
