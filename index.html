@@ -103,17 +103,17 @@
     >
       <div class="content">
         <p>
-          Title icon made by
+          Ícone criado por
           <a
             href="https://www.flaticon.com/authors/roundicons"
             title="Roundicons"
             >Roundicons</a
           >
-          from
+          de
           <a href="https://www.flaticon.com/" title="Flaticon"
             >www.flaticon.com</a
           >
-          is licensed by
+          é licenciado por
           <a
             href="http://creativecommons.org/licenses/by/3.0/"
             title="Creative Commons BY 3.0"
@@ -138,9 +138,10 @@
     <script>
       let contadorController = new ContadorController();
 
-      const countText = partialize(debounceTime, 1000)(
-        contadorController.contabilizaTexto.bind(contadorController)
-      );
+      const countText = partialize(
+        debounceTime,
+        1000
+      )(contadorController.contabilizaTexto.bind(contadorController));
 
       document.querySelector("#texto").oninput = () => {
         loading(true);
