@@ -17,7 +17,11 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css"
     />
-    <script data-ad-client="ca-pub-4435603996274737" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script
+      data-ad-client="ca-pub-4435603996274737"
+      async
+      src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+    ></script>
     <script
       defer
       src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"
@@ -27,7 +31,13 @@
         margin: 0 auto;
       }
       .is-scroll {
-        overflow: scroll;
+        overflow-x: scroll;
+      }
+      @media (max-width: 768px) {
+        #letras .letra-th {
+          padding-left: 18em;
+          text-align: left !important;
+        }
       }
     </style>
   </head>
@@ -86,7 +96,8 @@
         <table class="table center is-fullwidth is-narrow" id="letras">
           <thead>
             <tr>
-              <th class="has-text-centered" colspan="2">Letras</th>
+              <th class="has-text-centered">Letras</th>
+              <th class="has-text-centered">-</th>
             </tr>
             <tr>
               <th></th>
